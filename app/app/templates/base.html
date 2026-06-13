@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Three-Tier Message Board</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">Kubernetes learning app</p>
+        <h1>Three-Tier Message Board</h1>
+      </div>
+    </header>
+
+    <main class="page">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <section class="alerts" aria-live="polite">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
+

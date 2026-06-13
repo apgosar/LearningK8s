@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="layout">
+    <form class="panel form-panel" method="post" action="{{ url_for('add_message') }}">
+      <h2>Add a message</h2>
+      <label for="author">Name</label>
+      <input id="author" name="author" type="text" maxlength="60" placeholder="Student name" required>
+
+      <label for="body">Message</label>
+      <textarea id="body" name="body" rows="5" maxlength="500" placeholder="What did you learn today?" required></textarea>
+
+      <button type="submit">Save message</button>
+    </form>
+
+    <section class="panel messages-panel">
+      <div class="panel-heading">
+        <h2>Saved messages</h2>
+        <span>{{ messages|length }} visible</span>
+      </div>
+
+      {% if db_error %}
+        <p class="empty-state">{{ db_error }}</p>
+      {% elif messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <article class="message">
+              <div>
+                <h3>{{ message.author }}</h3>
+                <time datetime="{{ message.created_at }}">{{ message.created_at.strftime("%Y-%m-%d %H:%M:%S") }}</time>
+              </div>
+              <p>{{ message.body }}</p>
+              <form method="post" action="{{ url_for('remove_message', message_id=message.id) }}">
+                <button class="link-button" type="submit">Delete</button>
+              </form>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">No messages yet. Add the first one.</p>
+      {% endif %}
+    </section>
+  </section>
+{% endblock %}
+
