@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd-demo
+  labels:
+    app.kubernetes.io/name: argocd-demo
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-demo-page
