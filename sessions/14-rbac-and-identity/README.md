@@ -158,6 +158,11 @@ dev-reader:      can read selected objects in rbac-lab, cannot delete them.
 app-auditor:     can read selected namespaced resources only in rbac-lab.
 platform-viewer: can read Nodes, but not Pods across all Namespaces.
 ```
+```bash
+kubectl create token dev-reader -n rbac-lab
+kubectl config view --minify -o jsonpath= '{.clusters[0].cluster.server}'
+kubectl --server=https://09C602475ACCE2F31A32543FDC5F7276.gr7.us-east-2.eks.amazonaws.com --token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjVkMGIyM2U4YWU4YTRiODBjMzUxMTAwYTM3ZjZlMjM2YjI1ODU3MTciLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjIl0sImV4cCI6MTc4MjU0NzA3OCwiaWF0IjoxNzgyNTQzNDc4LCJpc3MiOiJodHRwczovL29pZGMuZWtzLnVzLWVhc3QtMi5hbWF6b25hd3MuY29tL2lkLzA5QzYwMjQ3NUFDQ0UyRjMxQTMyNTQzRkRDNUY3Mjc2IiwianRpIjoiZmY5MWE3NjItM2EwOC00NDk4LWFmNDItMTIwNmI2MmU3NmY2Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJyYmFjLWxhYiIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJkZXYtcmVhZGVyIiwidWlkIjoiYjRkMmU2ZWUtNWE5Zi00ZDk0LTlhNTMtYTVjOTNmNTUwNGQ3In19LCJuYmYiOjE3ODI1NDM0NzgsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpyYmFjLWxhYjpkZXYtcmVhZGVyIn0.G7CnPjdwfl6wr7GaDD1uO-hOLA9fz0_C0xy-a4bn279xAyM_FzfVeXYM28SG20S3Y1NDp6_BYiMnd1Ohc_yX_5jKTiYaI79ST391deqeGSlPnTuP9St6TLUolly3TwwYVxTfOjQbLsk-DFoCeBdefe2OHJSwv_qqBA2Nf5IoltWphl3SKTNsUhnShmw0S2h9KbjDhpFn7NXj5oYVFKNg77-F6tWKAOMUBkqorZ3vuFaHOQkCCi7JWfYfe0D82hvNNL2rR2rHMeO_FDLlLAEwtRB2gpsvzrkVDveE8l1Iq-u7Y3BlhXMri6-s5seyW-GGcBAvd8dYsynzRpXle59xJw --insecure-skip-tls-verify=true get svc -n rbac-lab 
+```
 
 ## Cleanup
 
